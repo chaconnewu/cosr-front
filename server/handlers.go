@@ -63,10 +63,10 @@ func sendResultPage(w http.ResponseWriter, r *http.Request, page *resultPage) {
 
 }
 
-// Truncate a search query
+// TruncateQuery allows only Config.MaxQueryTerms words to enter the actual search
 func TruncateQuery(q string) (string, string) {
 	words := strings.Fields(q)
-	allowedLength := Config.MaxQueryLengh
+	allowedLength := Config.MaxQueryTerms
 
 	var extra string // the starting word that are truncated
 	if len(words) > allowedLength {

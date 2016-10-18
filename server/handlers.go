@@ -66,10 +66,12 @@ func sendResultPage(w http.ResponseWriter, r *http.Request, page *resultPage) {
 // Truncate a search query
 func TruncateQuery(q string) (string, string) {
 	words := strings.Fields(q)
+	allowedLength := Config.MaxQueryLengh
+
 	var extra string // the starting word that are truncated
-	if len(words) > 10 {
-		q = strings.Join(words[:10], " ")
-		extra = words[10]
+	if len(words) > allowedLength {
+		q = strings.Join(words[:allowedLength], " ")
+		extra = words[allowedLength]
 	}
 
 	return q, extra
